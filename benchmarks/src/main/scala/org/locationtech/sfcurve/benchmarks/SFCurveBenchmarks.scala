@@ -15,8 +15,22 @@ class SFCurveBenchmarks extends CurveBenchmark {
     var res = 2
     while(res < 24){
         new ZCurve2D(res)
+        res += 1
     }
   }
+
+  def timeZ2BadCase(reps: Int) = run(reps)(Z2BadCase)
+  def Z2BadCase = {
+
+      var i = 2 //resolution bits
+      while (i < 20){
+          val sfc = new ZCurve2D(i)
+          val range = sfc.toRanges(-178.123456, -86.398493, 179.3211113, 87.393483)
+          i += 1
+      }
+
+  }
+
 
   def timeZ3IndexCreate(reps: Int) = run(reps)(z3IndexCreation)
   def z3IndexCreation = {
