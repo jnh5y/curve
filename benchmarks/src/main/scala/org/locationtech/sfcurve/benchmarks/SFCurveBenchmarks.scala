@@ -21,7 +21,9 @@ class SFCurveBenchmarks extends CurveBenchmark {
 
   def timeZ2BadCase(reps: Int) = run(reps)(Z2BadCase)
   def Z2BadCase = {
-
+      var t1 = Z2(0,90)
+      var t2 = Z2(180,0)
+      println("t1: " + t1.z + " t2: " + t2.z)
       var i = 2 //resolution bits
       while (i < 20){
           val sfc = new ZCurve2D(i)

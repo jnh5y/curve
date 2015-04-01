@@ -2,6 +2,8 @@ package org.locationtech.sfcurve.hilbertCurve
 
 import org.scalatest._
 
+import org.locationtech.sfcurve.hilbert._;
+
 class HilbertCurveSpec extends FunSpec with Matchers {
 
   val EPSILON: Double = 1E-3

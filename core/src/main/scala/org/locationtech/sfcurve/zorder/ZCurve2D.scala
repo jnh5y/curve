@@ -3,7 +3,7 @@ package org.locationtech.sfcurve.zorder
 import org.locationtech.sfcurve._
 
 /** Represents a 2D Z order curve that we will use for benchmarking purposes in the early stages.
-  * 
+  *
   * @param    resolution     The number of cells in each dimension of the grid space that will be indexed.
   */
 class ZCurve2D(resolution: Int) extends SpaceFillingCurve2D {
@@ -15,7 +15,7 @@ class ZCurve2D(resolution: Int) extends SpaceFillingCurve2D {
 
   // Code taken from geotrellis.raster.RasterExtent
   val cellwidth = (xmax - xmin) / resolution
-  val cellheight = (ymax - ymin) / resolution 
+  val cellheight = (ymax - ymin) / resolution
 
   private final def mapToCol(x: Double) =
     ((x - xmin) / cellwidth).toInt
@@ -44,10 +44,13 @@ class ZCurve2D(resolution: Int) extends SpaceFillingCurve2D {
   def toRanges(xmin: Double, ymin: Double, xmax: Double, ymax: Double): Seq[(Long, Long)] = {
     val colMin = mapToCol(xmin)
     val rowMin = mapToRow(ymin)
+    println("Input: " + xmin + " ymin: " + ymin + " xmax: " + xmax + " ymax: " + ymax)
     val min = Z2(colMin, rowMin)
+    println("minmapToCol: " + colMin + " minmapToRow: " + rowMin + " z: " + min.z)
     val colMax = mapToCol(xmax)
     val rowMax = mapToRow(ymax)
     val max = Z2(colMax, rowMax)
+    println("maxmapToCol: " + colMax + " maxmapToRow: " + rowMax + " z: " + max.z)
 
     Z2.zranges(min, max)
   }
