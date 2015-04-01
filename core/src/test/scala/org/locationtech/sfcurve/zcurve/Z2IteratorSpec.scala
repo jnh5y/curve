@@ -1,8 +1,8 @@
 package org.locationtech.sfcurve.zcurve
 
 import org.scalatest._
-import org.locationtech.sfcurve.zorder._;
-import org.locationtech.sfcurve.hilbert._;
+import org.locationtech.sfcurve.zorder._
+import org.locationtech.sfcurve.hilbert._
 
 class Z2IteratorSpec extends FunSpec with Matchers {
   describe("Z2IteratorRange") {

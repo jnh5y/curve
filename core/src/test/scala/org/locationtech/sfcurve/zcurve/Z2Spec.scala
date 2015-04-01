@@ -1,7 +1,7 @@
 package org.locationtech.sfcurve.zcurve
 
 import org.scalatest._
-import org.locationtech.sfcurve.zorder._;
+import org.locationtech.sfcurve.zorder._
 
 
 class Z2Spec extends FunSpec with Matchers {
