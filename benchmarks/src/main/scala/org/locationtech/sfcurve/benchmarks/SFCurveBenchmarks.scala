@@ -34,12 +34,12 @@ class SFCurveBenchmarks extends CurveBenchmark {
   }
 
 
-  def timeZ3IndexCreate(reps: Int) = run(reps)(z3IndexCreation)
+  /*def timeZ3IndexCreate(reps: Int) = run(reps)(z3IndexCreation)
   def z3IndexCreation = {
 
-    var x = 0
-    var y = 0
-    var z = 0
+    var x = 100
+    var y = 100
+    var z = 100
 
     while(x < 200) {
       while(y < 200) {
@@ -55,9 +55,9 @@ class SFCurveBenchmarks extends CurveBenchmark {
 
   def timeZ3ZRanges(reps: Int) = run(reps)(z3ZRangesCreation)
   def z3ZRangesCreation = {
-    var x = 0
-    var y = 0
-    var z = 0
+    var x = 100
+    var y = 100
+    var z = 100
 
     while(x < 100){
         while(y < 100){
@@ -71,6 +71,6 @@ class SFCurveBenchmarks extends CurveBenchmark {
         }
         x += 1
     }
-}
+}*/
 
 }
