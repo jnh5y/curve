@@ -1,7 +1,6 @@
 package org.locationtech.sfcurve.benchmarks
 
 import org.locationtech.sfcurve.zorder._
-
 import com.google.caliper.Param
 
 object SFCurveBenchmarks extends BenchmarkRunner(classOf[SFCurveBenchmarks])
