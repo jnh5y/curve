@@ -11,13 +11,19 @@ class HilbertCurveSpec extends FunSpec with Matchers {
   describe("A HilbertCurve implementation using UG lib") {
 
     it("translates (Double,Double) to Long and Long to (Double, Double)"){
-      val sfc = new HilbertCurve2D(16)
-      val index: Long = sfc.toIndex(0.0,0.0)
+      val resolution = 16
+      val gridCells = math.pow(2, resolution)
 
-      //result should be close to (0.0,0.0)
-      sfc.toPoint(index) should be < (0.0, 0.0)
-      sfc.toPoint(index) should be > (-EPSILON, -EPSILON)
-      
+      val sfc = new HilbertCurve2D(resolution)
+      val index: Long = sfc.toIndex(0.0, 0.0)
+
+      val xEpsilon = (360.0 / gridCells)
+      val yEpsilon = (180.0 / gridCells)
+
+      val point = sfc.toPoint(index)
+
+      point._1 should be (-(xEpsilon / 2.0) +- 0.000001)
+      point._2 should be (-(yEpsilon / 2.0) +- 0.000001)      
     }
 
     it("implements a range query"){
