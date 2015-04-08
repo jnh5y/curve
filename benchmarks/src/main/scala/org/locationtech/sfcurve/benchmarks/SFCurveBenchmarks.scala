@@ -8,7 +8,7 @@ class SFCurveBenchmarks extends CurveBenchmark {
 
   val pts = (0 until 300).toArray
 
-  def timeZ2IndexCreate(reps: Int) = run(reps)(z2IndexCreation)
+  /*def timeZ2IndexCreate(reps: Int) = run(reps)(z2IndexCreation)
   def z2IndexCreation = {
 
     var res = 2
@@ -16,7 +16,7 @@ class SFCurveBenchmarks extends CurveBenchmark {
         new ZCurve2D(res)
         res += 1
     }
-  }
+}*/
 
   def timeZ2BadCase(reps: Int) = run(reps)(Z2BadCase)
   def Z2BadCase = {
@@ -32,6 +32,79 @@ class SFCurveBenchmarks extends CurveBenchmark {
 
   }
 
+  def timeZ2CityCase(reps: Int) = run(reps)(Z2CityCase)
+  def Z2CityCase = {
+      var i = 10
+      var lx = -180
+      var ly = 89.68103
+      var ux = -179.597625
+      var uy = 90
+      var yrun = 0
+      var xrun = 0
+
+      while (i < 24){
+          val sfc = new ZCurve2D(i)
+          while((yrun + ly) > -90){
+              xrun = 0
+              while ((xrun + ux) < 180){
+                  val range = sfc.toRanges(lx+xrun, ly+yrun, ux+xrun, uy+yrun)
+                  xrun += 5
+              }
+              yrun -= 5
+          }
+          i += 1
+      }
+  }
+
+  def timeZ2StateCase(reps: Int) = run(reps)(Z2StateCase)
+  def Z2StateCase = {
+      var i = 6
+      var lx = -180
+      var ly = 86.022914
+      var ux = -173.078613
+      var uy = 90
+      var yrun = 0
+      var xrun = 0
+
+      while (i < 24){
+          val sfc = new ZCurve2D(i)
+          while ((yrun + ly) > -90){
+              xrun = 0
+              while((xrun + ux) < 180){
+                  val range = sfc.toRanges(lx+xrun, ly+yrun, ux+xrun, uy+yrun)
+                  xrun += 5
+              }
+              yrun -= 5
+          }
+
+          i += 1
+      }
+  }
+
+  def timeZ2CountryCase(reps: Int) = run(reps)(Z2CountryCase)
+  def Z2CountryCase = {
+      var i = 6
+      var lx = -180
+      var ly = 82.689749
+      var ux = -171.408692
+      var uy = 90
+      var yrun = 0
+      var xrun = 0
+
+      while (i < 24){
+          val sfc = new ZCurve2D(i)
+          while ((yrun + ly) > -90){
+              xrun = 0
+              while((xrun + ux) < 180){
+                  val range = sfc.toRanges(lx+xrun, ly+yrun, ux+xrun, uy+yrun)
+                  xrun += 5
+              }
+              yrun -= 5
+          }
+
+          i += 1
+      }
+  }
 
   /*def timeZ3IndexCreate(reps: Int) = run(reps)(z3IndexCreation)
   def z3IndexCreation = {

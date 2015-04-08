@@ -43,12 +43,12 @@ class ZCurve2D(resolution: Int) extends SpaceFillingCurve2D {
 
   def toRanges(xmin: Double, ymin: Double, xmax: Double, ymax: Double): Seq[(Long, Long)] = {
     val colMin = mapToCol(xmin)
-    val rowMin = mapToRow(ymin)
+    val rowMin = mapToRow(ymax)
     println("Input: " + xmin + " ymin: " + ymin + " xmax: " + xmax + " ymax: " + ymax)
     val min = Z2(rowMin, colMin)
     println("minmapToCol: " + colMin + " minmapToRow: " + rowMin + " z: " + min.z)
     val colMax = mapToCol(xmax)
-    val rowMax = mapToRow(ymax)
+    val rowMax = mapToRow(ymin)
     val max = Z2(rowMin, colMin)
     println("maxmapToCol: " + colMax + " maxmapToRow: " + rowMax + " z: " + max.z)
 

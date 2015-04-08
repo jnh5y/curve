@@ -25,7 +25,7 @@ class Z2IteratorSpec extends FunSpec with Matchers {
           val sfc = new ZCurve2D(2)
           val range = sfc.toRanges(-178.123456, -86.398493, 179.3211113, 87.393483)
 
-          range should have length 3
+          range should have length 1
       }
   }
 }
