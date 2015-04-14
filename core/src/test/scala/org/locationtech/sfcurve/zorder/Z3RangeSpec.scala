@@ -1,6 +1,8 @@
 package org.locationtech.sfcurve.zorder
 
 import org.scalatest._
+import org.locationtech.sfcurve.zorder._
+
 
 class Z3RangeSpec extends FunSpec with Matchers {
 
@@ -28,7 +30,7 @@ class Z3RangeSpec extends FunSpec with Matchers {
         z <- z1 to z2
         y <- y1 to y2
         x <- x1 to x2
-      } {        
+      } {
         expectedSet = expectedSet + Tuple3(x,y,z)
       }
 

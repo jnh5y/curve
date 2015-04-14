@@ -1,6 +1,8 @@
 package org.locationtech.sfcurve.zorder
 
 import org.scalatest._
+import org.locationtech.sfcurve.zorder._
+import org.locationtech.sfcurve.hilbert._
 
 class Z2IteratorSpec extends FunSpec with Matchers {
   describe("Z2IteratorRange") {
@@ -16,6 +18,16 @@ class Z2IteratorSpec extends FunSpec with Matchers {
       }
     }
   }
+
+  describe("ZCurve2D"){
+
+      it("creates a bounding box"){
+          val sfc = new ZCurve2D(2)
+          val range = sfc.toRanges(-178.123456, -86.398493, 179.3211113, 87.393483)
+
+          range should have length 1
+      }
+  }
 }
 /**
  * Base iterator that is able to seek forward to some index.
@@ -23,9 +35,9 @@ class Z2IteratorSpec extends FunSpec with Matchers {
  */
 class Z2Iterator(min: Z2, max: Z2) extends Iterator[Z2] {
   private var cur = min
-  
+
   def hasNext: Boolean = cur.z <= max.z
-  
+
   def next: Z2 = {
     val ret = cur
     cur += 1
@@ -41,7 +53,7 @@ class Z2Iterator(min: Z2, max: Z2) extends Iterator[Z2] {
  * Iterator that uses zdivide to decide when to seek forward.
  * As we encounter z values outside of our query range we decide how many misses we can sustain
  * before using zdivide to seek forward. The assumption that there is some number of calls to .next()
- * that will equal a cost of .seek(). 
+ * that will equal a cost of .seek().
  *
  * This is a mock class.
  */
@@ -50,11 +62,11 @@ case class ZdivideIterator(min: Z2, max: Z2) extends Z2Iterator(min, max)  {
   val range = Z2Range(min, max)
   var haveNext = false
   var _next: Z2 = new Z2(0)
-  
+
   advance
-  
+
   override def hasNext: Boolean = haveNext
-  
+
   override def next: Z2 = {
     // it's safe to report cur, because we've advanced to it and hasNext has been called.
     val ret = _next
@@ -65,7 +77,7 @@ case class ZdivideIterator(min: Z2, max: Z2) extends Z2Iterator(min, max)  {
   /**
    * Two possible post-conditions:
    * 1. cur is set to a valid object
-   * 2. cur is set to null and source.hasNext == false  
+   * 2. cur is set to null and source.hasNext == false
    */
   def advance: Unit = {
     var misses = 0
@@ -78,7 +90,7 @@ case class ZdivideIterator(min: Z2, max: Z2) extends Z2Iterator(min, max)  {
         misses + 1
       }
     }
-    
+
     if (_next < max) {
       val (litmax, bigmin) = Z2.zdivide(_next, min, max)
       _next = bigmin
