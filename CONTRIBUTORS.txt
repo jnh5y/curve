@@ -6,7 +6,6 @@ Project Leads
 
 Committers 
   Eugene Cheipesh <echeipesh@gmail.com>
-  Chris Eichelberger <cne1x@ccri.com>
 
 Facebook Open Academy UT-Austin students
   Mark Sandan <msandan@utexas.edu>
